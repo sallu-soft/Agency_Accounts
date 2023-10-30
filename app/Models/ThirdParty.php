@@ -6,16 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Agent extends Model
+class ThirdParty extends Model
 {
     use HasFactory;
-    protected $table = 'agent';
+    protected $table = 'thirdparty';
     protected $fillable = [
         'id',
-        'name',
-        'phone',
-        'address',
-        'id_card',
-        'photo'
+        'company',
+        'deal',
+        'given',
+        'order_id',
+        'profit',
+        'user',
+
     ];
 }

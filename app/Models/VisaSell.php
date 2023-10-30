@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 
-class Visa extends Model
+class VisaSell extends Model
 {
     use HasFactory;
-    protected $table = 'visa';
+    protected $table = 'visa_sell';
     protected $fillable = [
         'id',
-        'buy_form',
+        'agent',
         'company',
-        'country',
-        'worker_salary',
-        'prof_name',
-        'purchase_tk',
+        'passanger',
+        'sell_price',
+        'total',
+        'profit',
         'quantity',
-        'per_visa',
-        'invoice'
+        'user',
+        'visa'
 
     ];
 }

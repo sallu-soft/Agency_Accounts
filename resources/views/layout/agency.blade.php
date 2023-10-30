@@ -7,6 +7,12 @@
   
 
   @include('layout.head')
+  
+<script>
+    $(document).ready(function() {
+        $('#candidatetable').DataTable();
+    });
+    </script> 
  <style>
   body {
       margin: 0;
@@ -25,10 +31,10 @@
    
     
     
-    <main id="content" class="flex-1 px-6 lg:px-8">
+    <main id="content" class="flex-1 px-6 lg:px-4">
       <div class=" mx-auto flex gap-x-2 lg:flex-nowrap flex-wrap">
           <!-- Replace with your content -->
-          <section class="lg:w-[49%] h-[98vh] w-[100%] p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-2">
+          <section class="lg:w-[49%]  h-fit w-[100%] p-6 mx-auto bg-gray-600 shadow-xl rounded-md shadow-md dark:bg-gray-800 mt-2">
             <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-pencil-square mr-2"></i>Agent Entry</h1>
             <form  id="addcandidate" action="{{ route('user/index') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -71,8 +77,8 @@
           <span class="close" id="closeModal">&times;</span>
           <img class="modal-content" id="modalImage">
         </div>
-          <section class="lg:w-[49%] h-[98vh] w-[100%] p-3 mx-auto bg-red-900 rounded-md shadow-md dark:bg-gray-800 mt-2">
-            <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-person-lines-fill mr-2"></i>Agent List</h1>
+          <section class="lg:w-[49%] h-[98vh] w-[100%] p-3 mx-auto bg-pink-900 shadow-xl rounded-md shadow-md dark:bg-gray-800 mt-2">
+            <h1 class="text-xl font-bold text-gray-100 capitalize dark:text-white"><i class="bi bi-person-lines-fill mr-2"></i>Agent List</h1>
             <section class="antialiased bg-gray-100 text-gray-600 mt-3">
               <div class="flex flex-col justify-center h-full">
                   <!-- Table -->

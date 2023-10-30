@@ -66,7 +66,7 @@
                     </div>
                     <div>
                         <label class="text-white dark:text-gray-200" for="passwordConfirmation">Worker Salary</label>
-                        <input id="salay" type="text" placeholder="Worker Salary" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
+                        <input id="salay" type="text" placeholder="Worker Salary" name="salary" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
                     </div>
 
                     <div>
@@ -86,7 +86,7 @@
 
         <div >
             <label for="invoice" class="text-white dark:text-gray-200">Invoice Number</label>
-            <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="invoice" placeholder="Invoice Number" name="invoice">
+            <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="invoice" placeholder="Invoice Number" name="invoice" />
         </div>
                 </div>
         
@@ -161,6 +161,27 @@
 @include('layout.script')
 <script>
     $(document).ready(function() {
+      var randomString = generateRandomString(8); // Change the number to the desired length
+    var order_id = generateRandomString(10); // Change the number to the desired length
+    $('#invoice').val(randomString);
+    $('#order_id').val(order_id);
+    function generateRandomString(length) {
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        for (var i = 0; i < length; i++) {
+            var randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters.charAt(randomIndex);
+        }
+        return result;
+    }
+
+    function calculateTotal() {
+      var quantity = parseFloat($('#sellquatity').val()) || 0;
+      var pricePerVisa = parseFloat($('#price_per').val()) || 0;
+      var total = quantity * pricePerVisa;
+      $('#total').val(total);
+    }
+
         $('#addvisa').submit(function(event) {
             event.preventDefault();
 
@@ -173,23 +194,27 @@
                 processData: false,
                 contentType: false,
                 success: function(response) {
-                    if (response.success) {
-                        // Display a success Swal notification
-                        Swal.fire({
-                            icon: 'success',
-                            title: response.title,
-                            text: response.message,
-                        });
-                        window.location.reload();
-                    } else {
-                        // Display an error Swal notification
-                        Swal.fire({
-                            icon: 'error',
-                            title: response.title,
-                            text: response.message,
-                        });
-                    }
-                },
+                if (response.success) {
+                    // Display a success Swal notification
+                    Swal.fire({
+                        icon: 'success',
+                        title: response.title,
+                        text: response.message,
+                    }).then(function() {
+                        if (response.redirect_url) {
+                            window.location.href = response.redirect_url;
+                        }
+                    });
+                    window.location.reload();
+                } else {
+                    // Display an error Swal notification
+                    Swal.fire({
+                        icon: 'error',
+                        title: response.title,
+                        text: response.message,
+                    });
+                }
+            },
                 error: function(error) {
                     // Handle errors here
                     console.error(error);

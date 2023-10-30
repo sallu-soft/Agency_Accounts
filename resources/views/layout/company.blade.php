@@ -18,8 +18,14 @@
 
 </style>
 @include('layout.head')
+<script>
+    $(document).ready(function() {
+        $('#candidatetable').DataTable();
+    });
+    </script> 
 </head>
 <body class="">
+   
   <div class="relative min-h-screen md:flex" data-dev-hint="container">
    
     @include('layout.sidebar')
@@ -39,7 +45,15 @@
                        
                         <input type="text"  class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="company_name" name="company_name" placeholder="Company Name" required>
                     </div>
-        
+                    <div >
+                        <label for="pnumber" class="text-white dark:text-gray-200">Type</label>
+                        <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="travelType" name="company_type">
+                          <option value="umra">Umra</option>
+                          <option value="hajj">Hajj</option>
+                          <option value="ticket">Ticket</option>
+                          <option value="visa_process">Visa Process</option>
+                        </select>
+                    </div>
                     <div>
                         <label class="text-white dark:text-gray-200" for="description">Description</label>
                         <input id="description" type="text" name="description" placeholder="Description" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
@@ -91,6 +105,7 @@
                                   <tr>
                                     <th scope="col">Serial Number</th>
                                     <th scope="col">Company Name</th>
+                                    <th scope="col">Company Type</th>
                                     <th scope="col">Description</th>
                                   
                                   </tr>
@@ -99,9 +114,11 @@
                                 <tbody>
                                  
                                   @foreach ($company as $index=>$item)
+                                 
                                   <tr>
                                       <td>{{ $index++ }}</td>
                                       <td>{{ $item->name ?? 'N/A' }}</td>
+                                      <td>{{ $item->type ?? 'N/A' }}</td>
                                       <td>{{ $item->description ?? 'N/A' }}</td>
                                      
                                   </tr>

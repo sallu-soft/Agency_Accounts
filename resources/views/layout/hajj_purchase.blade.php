@@ -29,7 +29,7 @@
       <div class=" mx-auto flex gap-x-2 lg:flex-nowrap flex-wrap">
           <!-- Replace with your content -->
           <section class="lg:w-[49%] h-[98vh] w-[100%] p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-2">
-            <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-pencil-square mr-2"></i>Hajj Purchage Entry</h1>
+            <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-pencil-square mr-2"></i>Hajj Selling Entry</h1>
             <form  id="addcandidate" action="{{ route('user/index') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
@@ -72,7 +72,7 @@
           <img class="modal-content" id="modalImage">
         </div>
           <section class="lg:w-[49%] h-[98vh] w-[100%] p-3 mx-auto bg-red-900 rounded-md shadow-md dark:bg-gray-800 mt-2">
-            <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-person-lines-fill mr-2"></i>Hajj Purchase List</h1>
+            <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-person-lines-fill mr-2"></i>Hajj Selling List</h1>
             <section class="antialiased bg-gray-100 text-gray-600 mt-3">
               <div class="flex flex-col justify-center h-full">
                   <!-- Table -->
@@ -124,8 +124,7 @@
                                   @endforeach
                                   
                                 </tbody>
-                               
-                              </table>
+                            </table>
                           </div>
                       </div>
                   </div>

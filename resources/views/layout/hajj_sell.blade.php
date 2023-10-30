@@ -29,39 +29,53 @@
       <div class=" mx-auto flex gap-x-2 lg:flex-nowrap flex-wrap">
           <!-- Replace with your content -->
           <section class="lg:w-[49%] h-[98vh] w-[100%] p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-2">
-            <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-pencil-square mr-2"></i>Hajj Selling Entry</h1>
-            <form  id="addcandidate" action="{{ route('user/index') }}" method="post" enctype="multipart/form-data">
+            <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-pencil-square mr-2"></i>Hajj/Umrah Buyer Entry</h1>
+            <form id="addhajj" action="{{ route('user/purchase') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
                     <div>
-                        <label class="text-white dark:text-gray-200" for="pname">Agent Name</label>
-                        <input type="text" id="pname" name="pname" placeholder="Agent Name" required class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                    </div>
-        
-                    <div>
-                        <label class="text-white dark:text-gray-200" for="pnumber">Agent Phone</label>
-                        <input type="text" id="pnumber" name="pnumber" minlength="0" maxlength="9" required placeholder="Phone Number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                    </div>
-        
-                    <div>
-                        <label class="text-white dark:text-gray-200" for="address">Address</label>
-                        <input type="text" id="address" placeholder="Address" name="address" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring">
-                    </div>
-                    <div class="">
-                      <label for="image_file" class="text-white dark:text-gray-200">Profile Image</label>
-                      <input type="file" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="image_file" name="image_file">
-                 </div>
+                        <label for="agent" class="text-white dark:text-gray-200">Type</label>
+                        <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="select_type" name="type">
+                            <option value="">Select Type</option> <!-- Default option -->
+                            <option value="umra">UMRAH</option>
+                            <option value="hajj">HAJJ</option>
+                
+                        </select>
+                      </div>
+                
+                      <div>
+                        <label for="agent" class="text-white dark:text-gray-200">Agent</label>
+                        <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="agentoptionpurchase" name="agentpurchase">
+                            <option value="">Select an Agent</option> <!-- Default option -->
+                            @foreach($agent as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                      </div>
+                        
+                        <div>
+                          <label for="agent" class="text-white dark:text-gray-200">Passanger</label>
+                          <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="sellpassengerpurchase" name="sellpassengerpurchase">
+                              <option value="">Select a passanger</option> <!-- Default option -->
+                          </select>
+                        </div>
+                       
+                        <div >
+                          <label for="agent" class="text-white dark:text-gray-200">Price</label>
+                          <input type="number" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="deal_price_umra" name="deal_price_umra">
+                        </div>
+                
+                        <div>
+                          <label for="agent" class="text-white dark:text-gray-200">Order Code</label>
+                          <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="order_id" name="order_id" readonly>
+                        </div>
       
-                  <div class="">
-                      <label for="passport_pic" class="text-white dark:text-gray-200">Upload ID Card</label>
-                      <input type="file" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="id_card" name="id_card">
-                  </div>
                    
                   
                 </div>
         
                 <div class="flex justify-end mt-6">
-                    <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600" type='submit'>Add Agent</button>
+                    <button class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-pink-500 rounded-md hover:bg-pink-700 focus:outline-none focus:bg-gray-600" type='submit'>Add Hajj/Umrah</button>
                 </div>
             </form>
 
@@ -141,7 +155,138 @@
 @include('layout.script')
 <script>
     $(document).ready(function() {
-    $('#addcandidate').submit(function(event) {
+        var randomString = generateRandomString(8); // Change the number to the desired length
+    var order_id = generateRandomString(10); // Change the number to the desired length
+    $('#order_id').val(order_id);
+   
+    $('#sellquatity, #price_per').on('change', calculateTotal);
+
+    function generateRandomString(length) {
+        var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var result = '';
+        for (var i = 0; i < length; i++) {
+            var randomIndex = Math.floor(Math.random() * characters.length);
+            result += characters.charAt(randomIndex);
+        }
+        return result;
+    }
+
+    function calculateTotal() {
+      var quantity = parseFloat($('#sellquatity').val()) || 0;
+      var pricePerVisa = parseFloat($('#price_per').val()) || 0;
+      var total = quantity * pricePerVisa;
+      $('#total').val(total);
+    }
+
+
+        $('#companyloadinvoice').change(function() {
+   var comid = $(this).val();
+   $.ajax({
+      type: "GET",
+      url: '/load-invoice/' + comid,
+      success: function(response) {
+         var selectElement = $('#invoiceoption');
+
+         // Clear existing options, except the default option
+         selectElement.find('option:not(:first)').remove();
+
+         if (response.length > 0) {
+            $.each(response, function(index, item) {
+               selectElement.append($('<option>', {
+                  value: item.id,
+                  text: item.invoice
+               }));
+            });
+         } else {
+            console.log("No data found in the response.");
+         }
+      },
+      error: function(error) {
+         console.error(error);
+      }
+   });
+});
+
+
+$('#agentoption').change(function() {
+   var comid = $(this).val();
+  
+   $.ajax({
+      type: "GET", 
+      url: '/load-passanger/' + comid, 
+      success: function(response) {
+        // console.log(response);
+         if (response.length > 0) {
+
+            var selectElement = $('#sellpassenger');
+            selectElement.find('option:not(:first)').remove();
+            $.each(response, function(index, item) {
+              var option = $('<option>', {
+                  value: item.id,
+                  text: item.passenger_name
+              });
+              selectElement.append(option);
+            });
+
+         } else {
+            console.log("No data found in the response.");
+         }
+      },
+      error: function(error) {
+         console.error(error);
+      }
+   });
+});
+$('#agentoptionpurchase').change(function() {
+   var comid = $(this).val();
+   var type  = $('#select_type').val();
+   $.ajax({
+      type: "GET", 
+      url: '/load-' + type + '/' + comid,
+      success: function(response) {
+        // console.log(response);
+         if (response.length > 0) {
+
+            var selectElement = $('#sellpassengerpurchase');
+            selectElement.find('option:not(:first)').remove();
+            $.each(response, function(index, item) {
+              var option = $('<option>', {
+                  value: item.id,
+                  text: item.passenger_name
+              });
+              selectElement.append(option);
+            });
+
+         } else {
+            console.log("No data found in the response.");
+         }
+      },
+      error: function(error) {
+         console.error(error);
+      }
+   });
+});
+
+$('#invoiceoption').change(function() {
+   var comid = $(this).val();
+  
+   $.ajax({
+      type: "GET", 
+      url: '/load-visa-details/' + comid, 
+      success: function(response) {
+        console.log(response);
+        $.each(response, function(index, item) {
+          $('#available_visa').val(item.quantity);
+          $('#price_per_visa').val(item.per_visa);
+        });
+        
+      },
+      error: function(error) {
+         console.error(error);
+      }
+   });
+});
+    $('#addhajj').submit(function(event) {
         event.preventDefault();
 
         var formData = new FormData(this);

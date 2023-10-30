@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <title>Personal Accounts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css"
-    />
+  
     <link rel="stylesheet" href="../styles/style.css"/>
     <script src="https://cdn.datatables.net/1.11.6/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -41,7 +38,7 @@
     <main id="content" class="flex-1 px-6 lg:px-8">
       <div class=" mx-auto flex gap-x-1 lg:flex-nowrap flex-wrap">
           <!-- Replace with your content -->
-          <section class="lg:w-[49%] h-[98vh] w-[100%] p-6 mx-auto bg-indigo-600 rounded-md shadow-md dark:bg-gray-800 mt-2">
+          <section class="lg:w-[49%] h-fit w-[100%] p-6 mx-auto bg-indigo-800 rounded-md shadow-md dark:bg-gray-800 mt-2">
             <h1 class="text-xl font-bold text-white capitalize dark:text-white"><i class="bi bi-pencil-square mr-2"></i>Passenger Entry</h1>
             <form class="row g-3" id="addpassenger" action="{{ route('user/passenger') }}" method="post" enctype="multipart/form-data">
                 @csrf
@@ -61,11 +58,39 @@
                         <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="passport" placeholder="Passport" name="passport"  minlength="0" maxlength="9" required>
                     </div>
                     <div>
+                        <label class="text-white mr-4 dark:text-gray-200" for="passwordConfirmation">Passport Issue Date </label>
+                        
+                        <input type="radio" id="five" name="years" value="5">
+                              <label for="five" class="text-white font-semibold">5 Years</label>
+
+                              <input type="radio" id="ten" name="years" value="10">
+                              <label for="five" class="text-white font-semibold">10 Years</label>
+                        <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="pass_issue_date" placeholder="Passport" name="passport_issue"   required>
+                    </div>
+                    <div>
+                        <label class="text-white dark:text-gray-200" for="passportExpiry">Passport Expiry Date</label>
+                        <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="pass_expire_date" placeholder="Passport Expire Date" name="passport_expire"   required>
+                    </div>
+                    <div>
                         <label class="text-white dark:text-gray-200" for="pname">Passenger Name</label>
-                        {{-- <input id="username" type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"> --}}
+                        
                         <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:bord" id="passenger_name" name="passenger_name" placeholder="Passenger Name" required>
                     </div>
-        
+                    <div>
+                        <label class="text-white dark:text-gray-200" for="pname">Date Of Birth</label>
+                        
+                        <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:bord" id="date_of_birth" name="dob" placeholder="Date Of Birth" required>
+                    </div>
+                    
+                    <div>
+                        <label class="text-white dark:text-gray-200" for="Agent">Gender</label>
+                        <select class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="gender" name="gender">
+                            <option value="">Select a Gender</option> <!-- Default option -->
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+
                     <div>
                         <label class="text-white dark:text-gray-200" for="emailAddress">Phone Number</label>
                         <input type="text" class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring" id="pnumber" name="pnumber" required placeholder="Phone Number">
@@ -116,7 +141,7 @@
                         
                         <div class="p-2">
                             <div class="overflow-x-auto overflow-y-auto h-[85vh] lg:h-[85vh]">
-                            <table class="table table-bordered border-primary" id="passengertable">
+                            <table class="table table-bordered border-primary" id="candidatetable">
                                 <thead>
                                   <tr>
                                     <th scope="col">SL</th>
@@ -202,11 +227,7 @@
     // new DataTable('#passengertable');
 
     $(document).ready(function() {
-        // $('#passengertable').DataTable({
-        //     "searching": true, // Enable or disable search box
-        // "ordering": true, // Enable or disable sorting
-        // "responsive": true, // Enable or disable
-        // });
+        
 
         
         $('#passport').blur(function() {
@@ -286,6 +307,7 @@
                             window.location.href = response.redirect_url;
                         }
                     });
+                    window.location.reload();
                 } else {
                     // Display an error Swal notification
                     Swal.fire({
@@ -309,6 +331,37 @@
         });
     });
     });
+    $('#pass_issue_date').datepicker({
+      dateFormat: 'dd/mm/yy',
+      onSelect: function(selectedDate) {
+        var selectedOption = document.querySelector('input[name="years"]:checked').value;
+            var issueDate = $(this).datepicker('getDate');
+            issueDate.setFullYear(issueDate.getFullYear() + parseInt(selectedOption));
+            issueDate.setDate(issueDate.getDate() - 1);
+            var formattedDate = $.datepicker.formatDate('dd/mm/yy', issueDate);
+            $('#pass_expire_date').val(formattedDate);
+      }
+    });
+
+
+    $('#date_of_birth').datepicker({
+      dateFormat: 'dd/mm/yy',
+      onSelect: function(selectedDate) {
+            var dateOfBirth = $(this).datepicker('getDate');
+            
+            var formattedDate = $.datepicker.formatDate('dd/mm/yy',dateOfBirth);
+            $('#date_of_birth').val(formattedDate);
+      }
+    });
+
+
+
+
+   
+    $('#pass_expire_date').datepicker({
+      dateFormat: 'dd/mm/yy'
+    });
+
 </script>
 
 </body>

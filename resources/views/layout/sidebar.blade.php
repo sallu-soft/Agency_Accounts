@@ -62,15 +62,15 @@
           <div class="relative group">
             <button class="flex items-center w-full space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">
                 <i class="bi bi-person-lines-fill"></i>
-                <span>Hajj</span>
+                <span>Hajj/Umrah</span>
             </button>
             <ul class="absolute hidden z-50 group-hover:block bg-white rounded-lg border border-gray-300 py-2 ml-6 ">
                 <!-- Submenu items -->
-                <li><a href="{{ route('hajj_sell') }}" class="block hover:bg-pink-400 py-2 px-4 hover:text-white text-gray-800 font-semibold ">Hajj Sell</a></li>
-                <li><a href="{{ route('hajj_purchase') }}" class="block hover:bg-pink-400 py-2 px-4 hover:text-white text-gray-800 font-semibold ">Hajj Purchase</a></li>
+                <li><a href="{{ route('hajj_sell') }}" class="block hover:bg-pink-400 py-2 px-4 hover:text-white text-gray-800 font-semibold ">Hajj/Umrah Customar</a></li>
+                <li><a href="{{ route('hajj_purchase') }}" class="block hover:bg-pink-400 py-2 px-4 hover:text-white text-gray-800 font-semibold ">Hajj/Umrah Manegement</a></li>
             </ul>
         </div>
-          <div class="relative group">
+          {{-- <div class="relative group">
             <button class="flex items-center w-full space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">
                 <i class="bi bi-person-lines-fill"></i>
                 <span>Umrah</span>
@@ -80,7 +80,7 @@
                 <li><a href="{{ route('umrah_sell') }}" class="block hover:bg-pink-400 py-2 px-4 hover:text-white text-gray-800 font-semibold ">Umrah Sell</a></li>
                 <li><a href="{{ route('umrah_purchase') }}" class="block hover:bg-pink-400 py-2 px-4 hover:text-white text-gray-800 font-semibold ">Umrah Purchase</a></li>
             </ul>
-        </div>
+        </div> --}}
           <div class="relative group">
             <button class="flex items-center w-full space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">
                 <i class="bi bi-person-lines-fill"></i>
@@ -92,8 +92,10 @@
                 <li><a href="{{ route('ticket_purchase') }}" class="block hover:bg-pink-400 py-2 px-4 hover:text-white text-gray-800 font-semibold ">Ticket Purchase</a></li>
             </ul>
         </div>
-          
-          
+        <a href="{{ route('report') }}" class="flex items-center space-x-2 py-2 px-4 transition duration-200 hover:bg-gray-700 hover:text-white">
+            <i class="bi bi-person-lines-fill"></i>
+              <span>Report</span>
+          </a>
       </nav>
       </div>
 </aside>
